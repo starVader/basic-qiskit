@@ -1,3 +1,4 @@
+from matplotlib import pyplot as plt
 from qiskit import QuantumCircuit
 
 # Create a new circuit with two qubits
@@ -14,3 +15,6 @@ def hello_world():
     # last line of the cell, so the drawing appears in the cell output.
     # Remove the "mpl" argument to get a text drawing.
     qc.draw("mpl")
+    # Show the Diagram
+    plt.draw()
+    plt.show()
