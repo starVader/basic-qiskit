@@ -2,7 +2,7 @@ from matplotlib import pyplot as plt
 from qiskit import QuantumCircuit
 
 # Create a new circuit with two qubits
-def hello_world():
+def hello_qubit():
     qc = QuantumCircuit(2)
 
     # Add a Hadamard gate to qubit 0

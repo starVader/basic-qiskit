@@ -3,6 +3,10 @@ from qiskit_ibm_runtime import SamplerV2 as Sampler
 
 
 def verify_set_up(auth):
+    """
+        verifies the connection with IBM quantum server and job execution
+    :param auth: Auth object based on API key
+    """
     # Create empty circuit
     example_circuit = QuantumCircuit(2)
     example_circuit.measure_all()
