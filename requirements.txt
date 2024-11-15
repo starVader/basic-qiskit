@@ -2,3 +2,4 @@ qiskit
 qiskit_ibm_runtime
 matplotlib
 pylatexenc
+qiskit[visualization]
