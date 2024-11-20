@@ -1,10 +1,13 @@
 import math
 
+from matplotlib import pyplot as plt
 from qiskit import QuantumCircuit, generate_preset_pass_manager
 from qiskit.circuit.library import GroverOperator
 from qiskit.visualization import plot_distribution
 from qiskit_ibm_runtime import SamplerV2 as Sampler
 from qiskit_ibm_runtime.fake_provider import FakeManilaV2
+from qiskit_aer import AerSimulator
+
 
 
 # from auth.authenticate import authenticate
@@ -30,19 +33,22 @@ if __name__ == '__main__':
     # Optimize problem for quantum execution
     pm = generate_preset_pass_manager(optimization_level=3)
     circuit_isa = pm.run(qc)
-    circuit_isa.draw(output="mpl", idle_wires=False, style="iqp")
+    # circuit_isa.draw(output="mpl", idle_wires=False, style="iqp")
 
     # auth = authenticate()
     # run on IBM server
     # backend = auth.least_busy(operational=True, simulator=False)
     # sampler = Sampler(backend)
 
-    options = {"simulator": {"seed_simulator": 42}}
-    fake_manila = FakeManilaV2()
-    pm = generate_preset_pass_manager(backend=fake_manila, optimization_level=1)
+    # options = {"simulator": {"seed_simulator": 42}}
+    # fake_manila = FakeManilaV2()
+    simulator = AerSimulator()
+    pm = generate_preset_pass_manager(backend=simulator, optimization_level=1)
     isa_qc = pm.run(qc)
-    sampler = Sampler(mode=fake_manila, options=options)
-    sampler.options.default_shots = 10_000
+    sampler = Sampler(mode=simulator)
+    sampler.options.default_shots = 10000
     result = sampler.run([circuit_isa]).result()
     dist = result[0].data.meas.get_counts()
     plot_distribution(dist)
+    plt.draw()
+    plt.show()
