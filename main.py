@@ -6,6 +6,6 @@ from hello_world.sample import hello_qubit
 if __name__ == '__main__':
     print("Initializing")
     hello_qubit()
-    auth = authenticate()
+    # auth = authenticate()
     # verify_set_up(auth)
 
